@@ -16,7 +16,7 @@
             <v-menu offset-y>
                 <template v-slot:activator="{ on }">
                     <v-btn color="grey" text v-on="on">
-                        <v-icon class="mr-2" style="font-size: 15px">fas fa-chevron-down</v-icon>
+                        <v-icon left>expand_more</v-icon>
                         <span>Menu</span>
                     </v-btn>
                 </template>
@@ -35,7 +35,7 @@
             <div class="my-2">
                 <v-btn text class="grey--text">
                     <span>Sign Out</span>
-                    <v-icon right>fas fa-sign-out-alt</v-icon>
+                    <v-icon right>exit_to_app</v-icon>
                 </v-btn>
             </div>
 
@@ -50,7 +50,7 @@
                 link
                 >
                     <v-list-item-icon>
-                        <v-icon class="white--text" style="font-size: 20px">fas fa-{{ link.icon }}</v-icon>
+                        <v-icon class="white--text" style="font-size: 20px">{{ link.icon }}</v-icon>
                     </v-list-item-icon>
                     <router-link :to="link.route">
                         <v-list-item-content>
@@ -69,9 +69,9 @@
             return {
                 drawer: false,
                 links: [
-                    { icon: 'th', text: 'Dashboard', route: '/dashboard' },
+                    { icon: 'dashboard', text: 'Dashboard', route: '/dashboard' },
                     { icon: 'folder', text: 'My Projects', route: '/projects' },
-                    { icon: 'user', text: 'Team', route: '/team' }
+                    { icon: 'person', text: 'Team', route: '/team' }
                 ]
             }
         }
