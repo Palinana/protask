@@ -43,6 +43,17 @@
         
         <!-- Side drawer -->
         <v-navigation-drawer v-model="drawer" absolute temporary class="primary">
+            <!-- User image -->
+            <v-layout column align-center>
+                <v-flex class="mt-5">
+                    <v-avatar size="100">
+                        <img class="text-lg-center" src="/alex_smith.svg">
+                    </v-avatar>
+                    <p class="white--text subheading mt-1">Web developer</p>
+                </v-flex>
+            </v-layout>
+
+            <!-- Menu -->
             <v-list dense nav>
                 <v-list-item
                 v-for="link in links" 
