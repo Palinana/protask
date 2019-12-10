@@ -19,7 +19,7 @@
         <v-card-text>
             <v-form class="px-3" ref="form">
                 <v-text-field v-model="title" clearable label="Title" prepend-icon="folder" :rules="inputRules"></v-text-field>
-                <v-textarea v-model="content" name="input-7-1" label="Information" prepend-icon="edit"></v-textarea>
+                <v-textarea v-model="content" name="input-7-1" label="Information" prepend-icon="edit" :rules="inputRules"></v-textarea>
 
                 <!-- Calendar -->
                 <v-menu v-model="menu" :close-on-content-click="false">
@@ -49,12 +49,18 @@ export default {
       title: '',
       content: '',
       due: null,
-      menu: false
+      menu: false,
+      inputRules: [
+        v => !!v || 'This field is required',
+        v => v.length >= 3 || 'Minimum length is 3 characters'
+      ]
     }
   },
   methods: {
     submit() {
+      if(this.$refs.form.validate()) {
         console.log(this.title, this.content, this.due)
+      }
     }
   },
   computed: {
