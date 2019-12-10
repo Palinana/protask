@@ -51,6 +51,9 @@
                     </v-avatar>
                     <p class="white--text subheading mt-1">Web developer</p>
                 </v-flex>
+                <v-flex class="mt-4 mb-3">
+                    <Popup @projectAdded="snackbar = true"/>
+                </v-flex>
             </v-layout>
 
             <!-- Menu -->
@@ -75,7 +78,11 @@
 </template>
 
 <script>
+    import Popup from './Popup';
+
     export default {
+        components: { Popup },
+        
         data() {
             return {
                 drawer: false,
