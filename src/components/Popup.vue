@@ -1,0 +1,73 @@
+<template>
+    <v-dialog max-width="600px" v-model="dialog">
+      <template v-slot:activator="{ on }">
+        <v-btn color="success" dark v-on="on">
+          Add new project
+        </v-btn>
+      </template>
+
+      <v-card>
+        <!-- Title -->
+        <v-card-title
+          class="headline grey lighten-2 font-weight-regular"
+          primary-title
+        >
+          Add a New Project
+        </v-card-title>
+        
+        <!-- Form -->
+        <v-card-text>
+            <v-form class="px-3" ref="form">
+                <v-text-field v-model="title" clearable label="Title" prepend-icon="folder" :rules="inputRules"></v-text-field>
+                <v-textarea v-model="content" name="input-7-1" label="Information" prepend-icon="edit"></v-textarea>
+
+                <!-- Calendar -->
+                <v-menu v-model="menu" :close-on-content-click="false">
+                    <template v-slot:activator="{ on }">
+                        <v-text-field v-on="on" :rules="inputRules"
+                            :value="formattedDate" clearable label="Due date" prepend-icon="date_range">
+                        </v-text-field>
+                        <v-date-picker v-model="due" @change="menu = false"></v-date-picker>
+                    </template>
+                </v-menu>
+
+                <div class="text-center">
+                    <v-btn text @click="submit" class="success mx-0 mt-3">Add Project</v-btn>
+                </div> 
+            </v-form>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+</template>
+
+<script>
+import format from 'date-fns/format'
+
+export default {
+  data() {
+    return {
+      title: '',
+      content: '',
+      due: null,
+      menu: false
+    }
+  },
+  methods: {
+    submit() {
+        console.log(this.title, this.content, this.due)
+    }
+  },
+  computed: {
+    formattedDate () {
+      let formattedDate = '';
+
+      if (this.due) {
+        let modified = new Date(this.due.replace(/-/g , ','));
+        formattedDate = format(modified, 'do MMM yyyy');
+      }
+      
+      return formattedDate;
+    }
+  }
+}
+</script>
