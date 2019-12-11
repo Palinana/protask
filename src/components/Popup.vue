@@ -32,7 +32,7 @@
                 </v-menu>
 
                 <div class="text-center">
-                    <v-btn text @click="submit" class="success mx-0 mt-3">Add Project</v-btn>
+                    <v-btn text @click="submit" class="success mx-0 mt-3" :loading="loading">Add Project</v-btn>
                 </div> 
             </v-form>
         </v-card-text>
@@ -41,7 +41,8 @@
 </template>
 
 <script>
-import format from 'date-fns/format'
+import format from 'date-fns/format';
+import db from '@/fb';
 
 export default {
   data() {
@@ -53,13 +54,33 @@ export default {
       inputRules: [
         v => !!v || 'This field is required',
         v => v.length >= 3 || 'Minimum length is 3 characters'
-      ]
+      ],
+      loading: false,
+      dialog: false
     }
   },
   methods: {
     submit() {
       if(this.$refs.form.validate()) {
-        console.log(this.title, this.content, this.due)
+        this.loading = true;
+
+        let modified = new Date(this.due.replace(/-/g , ','));
+        let formattedDate = format(modified, 'do MMM yyyy');
+
+        const project = { 
+          title: this.title,
+          content: this.content,
+          due: formattedDate,
+          person: 'The Net Ninja',
+          status: 'ongoing'
+        }
+
+        // asynch
+        db.collection('projects').add(project).then(() => {
+          console.log('added to db');
+          this.loading = false;
+          this.dialog = false;
+        })
       }
     }
   },
