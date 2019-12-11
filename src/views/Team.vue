@@ -1,6 +1,6 @@
 <template>
   <div class="team">
-    <v-subheader class="font-weight-bold grey--text subtitle-1">Team</v-subheader>
+    <v-subheader class="font-weight-bold grey--text subtitle-1 justify-center mt-5">Team</v-subheader>
 
     <v-container class="my-5">
       <v-layout row wrap>
@@ -34,17 +34,26 @@
 </template>
 
 <script>
+  import db from '@/fb';
+
   export default {
     data() {
       return {
-        team: [
-          { name: 'Alex Smith', role: 'Web developer', avatar: '/alex_smith.svg'},
-          { name: 'Anna Stone', role: 'Graphic designer', avatar: '/anna_stone.svg' },
-          { name: 'Oliver Todd', role: 'Web developer', avatar: '/oliver_todd.svg' },
-          { name: 'Chun Li', role: 'Social media maverick', avatar: '/chun_li.svg' },
-          { name: 'Sarah Anderson', role: 'Sales guru', avatar: '/sarah_anderson.svg'}
-        ]
+        team: []
       }
-    }
+    },
+    created() {
+      db.collection('team').onSnapshot(res => {
+        const changes = res.docChanges()
+        changes.forEach(change => {
+          if(change.type === 'added') {
+            this.team.push({ 
+              ...change.doc.data(),
+              id: change.doc.id     
+            }) 
+          }
+        })
+      })  
+    }        
   }
 </script>
