@@ -95,3 +95,12 @@
         }
     }
 </script>
+
+<style>
+  .v-list-item:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  a {
+    text-decoration: none;
+  }
+</style>
