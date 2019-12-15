@@ -3,10 +3,17 @@ import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 import Projects from '../views/Projects.vue'
 import Team from '../views/Team.vue'
+import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: Home,
+    meta: { hideNavigation: true }
+  },
   {
     path: '/dashboard',
     name: 'dashboard',

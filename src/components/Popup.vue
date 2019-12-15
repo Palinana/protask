@@ -1,7 +1,7 @@
 <template>
     <v-dialog max-width="600px" v-model="dialog">
       <template v-slot:activator="{ on }">
-        <v-btn color="success" dark v-on="on">
+        <v-btn color="primary" dark v-on="on">
           Add new project
         </v-btn>
       </template>
@@ -32,7 +32,7 @@
                 </v-menu>
 
                 <div class="text-center">
-                    <v-btn text @click="submit" class="success mx-0 mt-3" :loading="loading">Add Project</v-btn>
+                    <v-btn text @click="submit" class="primary mx-0 mt-3" :loading="loading">Add Project</v-btn>
                 </div> 
             </v-form>
         </v-card-text>

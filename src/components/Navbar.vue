@@ -33,16 +33,18 @@
              
             <!-- Nav menu -->
             <div class="my-2">
-                <v-btn text class="grey--text">
-                    <span>Sign Out</span>
-                    <v-icon right>exit_to_app</v-icon>
-                </v-btn>
+                <router-link to="/">
+                    <v-btn text class="grey--text">
+                        <span>Sign Out</span>
+                        <v-icon right>exit_to_app</v-icon>
+                    </v-btn>
+                </router-link>
             </div>
 
         </v-toolbar>
         
         <!-- Side drawer -->
-        <v-navigation-drawer v-model="drawer" absolute temporary class="primary">
+        <v-navigation-drawer v-model="drawer" absolute temporary class="secondary">
             <!-- User image -->
             <v-layout column align-center>
                 <v-flex class="mt-5">
@@ -95,3 +97,12 @@
         }
     }
 </script>
+
+<style>
+  .v-list-item:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  a {
+    text-decoration: none;
+  }
+</style>
