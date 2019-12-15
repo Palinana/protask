@@ -2,17 +2,17 @@
   <div class="home">
 
     <v-container class="my-12">
-        <v-layout row justify-start class="mb-4 pl-3 pr-3">
-            <router-link to="/" class="navigation-logo">
-                <v-icon class="" color="black" style="font-size: 40px">dashboard</v-icon>
-            </router-link>
+      <v-layout row justify-start class="mb-4 pl-3 pr-3">
+        <router-link to="/" class="navigation-logo">
+          <v-icon class="" color="black" style="font-size: 40px">dashboard</v-icon>
+        </router-link>
 
-            <div class="navigation-list">
-                <ul v-for="link in links" :key="link.text">
-                    <li>{{ link.text }}</li>
-                </ul>
-            </div>
-        </v-layout>        
+        <div class="navigation-list">
+          <ul v-for="link in links" :key="link.text">
+            <li>{{ link.text }}</li>
+          </ul>
+        </div>
+      </v-layout>        
     </v-container>
 
     <v-layout row justify-start class="section__container">
@@ -20,7 +20,9 @@
         <h1 class="display-3 primary-heading">Powerful insights <br> into your team</h1>
         <p class="title secondary-heading my-7">Project planing and time tracking <br> for agile teams</p>
         <div class="demo-button__container ">
-          <v-btn depressed class="grey--white depressed my-8 demo-btn">See a demo</v-btn>
+          <router-link to="/dashboard">
+            <v-btn depressed class="grey--white depressed my-8 demo-btn" color="primary">See a demo</v-btn>
+          </router-link>
         </div>
       </div>
 
@@ -28,6 +30,7 @@
         <img :src="require('../assets/devices.png')" />
       </div>
     </v-layout>
+
   </div>
 </template>
 
