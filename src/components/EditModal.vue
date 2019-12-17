@@ -25,7 +25,7 @@
                 <v-menu v-model="menu" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
                         <v-text-field v-on="on" :rules="inputRules"
-                            :value="due" clearable label="Due date" prepend-icon="date_range">
+                            :value="formattedDate" clearable label="Due date" prepend-icon="date_range">
                         </v-text-field>
                         <v-date-picker v-model="due" @change="menu = false"></v-date-picker>
                     </template>
@@ -51,7 +51,7 @@ export default {
         id: this.project.id,
         title: this.project.title,
         content: this.project.content,
-        due: this.project.formattedDate,
+        due: format(new Date(this.project.due), 'yyyy-MM-dd'),
         menu: false,
         inputRules: [
             v => !!v || 'This field is required',
@@ -63,36 +63,36 @@ export default {
     },
     methods: {
         submit() {
-        if(this.$refs.form.validate()) {
-            this.loading = true;
+            if(this.$refs.form.validate()) {
+                this.loading = true;
 
+                let modified = new Date(this.due.replace(/-/g , ','));
+                let formattedDate = format(modified, 'MMM d, yyyy');
+
+                db.collection('projects').doc(this.project.id).update({
+                    title: this.title,
+                    content: this.content,
+                    due: formattedDate,
+                }).then(() => {
+                    console.log('updated project');
+                    this.loading = false;
+                    this.dialog = false;
+                })
+            }
+        }
+    },
+    computed: {
+        formattedDate () {
+        let formattedDate = '';
+
+        if (this.due) {
             let modified = new Date(this.due.replace(/-/g , ','));
-            let formattedDate = format(modified, 'do MMM yyyy');
+            formattedDate = format(modified, 'MMM d, yyyy');
+        }
 
-            db.collection('projects').doc(this.project.id).update({
-                title: this.title,
-                content: this.content,
-                due: formattedDate,
-            }).then(() => {
-                console.log('updated project');
-                this.loading = false;
-                this.dialog = false;
-            })
+        return formattedDate;
         }
     }
-  },
-  computed: {
-    formattedDate () {
-      let formattedDate = '';
-
-      if (this.due) {
-        let modified = new Date(this.due.replace(/-/g , ','));
-        formattedDate = format(modified, 'do MMM yyyy');
-      }
-      
-      return formattedDate;
-    }
-  }
 }
 </script>
 

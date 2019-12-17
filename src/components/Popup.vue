@@ -65,7 +65,7 @@ export default {
         this.loading = true;
 
         let modified = new Date(this.due.replace(/-/g , ','));
-        let formattedDate = format(modified, 'do MMM yyyy');
+        let formattedDate = format(modified, 'MMM d, yyyy');
 
         const project = { 
           title: this.title,
@@ -90,7 +90,7 @@ export default {
 
       if (this.due) {
         let modified = new Date(this.due.replace(/-/g , ','));
-        formattedDate = format(modified, 'do MMM yyyy');
+        formattedDate = format(modified, 'MMM d, yyyy');
       }
       
       return formattedDate;
