@@ -2,12 +2,14 @@
     <nav>
         <v-toolbar flat app>
             <!-- Side bars -->
-            <v-app-bar-nav-icon @click="drawer = !drawer" class="grey--text"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click="drawer = !drawer" class="black--text"></v-app-bar-nav-icon>
 
             <!-- App name -->
-            <v-toolbar-title class="text-uppercase grey--text">
-                <span class="font-weight-light">Pro</span>
-                <span>Task</span>
+            <v-toolbar-title class="black--text">
+                <router-link to="/" class="black--text text-uppercase nav-title__name">
+                    <span class="font-weight-light">Pro</span>
+                    <span>Task</span>
+                </router-link>
             </v-toolbar-title>
 
             <v-spacer></v-spacer>
@@ -15,7 +17,7 @@
             <!-- Dropdown Menu -->
             <v-menu offset-y>
                 <template v-slot:activator="{ on }">
-                    <v-btn color="grey" text v-on="on">
+                    <v-btn color="black" text v-on="on" class="nav-btn__menu">
                         <v-icon left>expand_more</v-icon>
                         <span>Menu</span>
                     </v-btn>
@@ -34,7 +36,7 @@
             <!-- Nav menu -->
             <div class="my-2">
                 <router-link to="/">
-                    <v-btn text class="grey--text">
+                    <v-btn text class="black--text nav-btn__sign-out">
                         <span>Sign Out</span>
                         <v-icon right>exit_to_app</v-icon>
                     </v-btn>
@@ -99,6 +101,13 @@
 </script>
 
 <style>
+  .nav-title__name:last-child {
+    font-weight: 500;
+  }
+  .nav-btn__menu,
+  .nav-btn__sign-out {
+    text-transform:none;
+  }
   .v-list-item:hover {
     background: rgba(255, 255, 255, 0.4);
   }

@@ -10,9 +10,14 @@
           :key="project.title"
         >
           <v-expansion-panel-header>{{ project.title }}</v-expansion-panel-header>
+
           <v-expansion-panel-content>
             <v-card flat>
               <v-card-text class="px-4 grey--text">
+
+                <!-- Edit Modal -->
+                <EditModal :project="project"/>
+
                 <div class="font-weight-bold">Due by {{ project.due }}</div>
                 <div>{{ project.content }}</div>
               </v-card-text>
@@ -25,9 +30,11 @@
 </template>
 
 <script>
+  import EditModal from '@/components/EditModal'
   import db from '@/fb';
 
   export default {
+    components: { EditModal },
     data() {
       return {
         projects: []
