@@ -24,6 +24,16 @@
           </template>
           <span>Sort by project author</span>
         </v-tooltip>
+
+        <v-tooltip top>
+          <template v-slot:activator="{ on }">
+            <v-btn small text color="grey" @click="sortBy('status')" v-on="on">
+              <v-icon small left>assignment_turned_in</v-icon>
+              <span class="caption text-lowercase">By Status</span>
+            </v-btn>
+          </template>
+          <span>Sort by project status</span>
+        </v-tooltip>
       </v-layout>
 
       <!-- Projects -->
@@ -45,7 +55,7 @@
           </v-flex>
 
           <v-flex xs2 sm4 md2 style="display: flex; justify-content: center; flex-direction: column;">
-            <div class="right">
+            <div class="right project-status">
               <v-chip small :class="`${project.status} white--text my-2 caption`">{{ project.status }}</v-chip>
             </div>
           </v-flex>
@@ -107,5 +117,8 @@
   }
   .v-chip.overdue{ 
       background: #e25021 !important; 
+  }
+  .project-status {
+    align-self: center;
   }
 </style>

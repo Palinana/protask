@@ -45,7 +45,7 @@ import format from 'date-fns/format';
 import db from '@/fb';
 
 export default {
-    props: ['project' ],
+    props: ['project', 'updateData' ],
     data() {
         return {
         id: this.project.id,
@@ -58,7 +58,8 @@ export default {
             v => v.length >= 3 || 'Minimum length is 3 characters'
         ],
         loading: false,
-        dialog: false
+        dialog: false,
+        updatedProjects: []
         }
     },
     methods: {
@@ -77,6 +78,21 @@ export default {
                     console.log('updated project');
                     this.loading = false;
                     this.dialog = false;
+
+                    db.collection('projects').onSnapshot(res => {
+                        const changes = res.docChanges()
+                        changes.forEach(change => {
+                        if(change.type === 'added') {
+                            this.updatedProjects.push({ 
+                            ...change.doc.data(),
+                            id: change.doc.id     
+                            }) 
+                        }
+                        })
+                    })   
+                    
+                }).then(() => {
+                    this.updateData(this.updatedProjects)
                 })
             }
         }

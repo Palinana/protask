@@ -26,7 +26,7 @@
                     <v-list-item v-for="link in links" :key="link.text" @click="method()" link>
                         <router-link :to="link.route" style="text-decoration: none">                        
                             <v-list-item-content>
-                                <v-list-item-title class="font-weight-light">{{ link.text }}</v-list-item-title>
+                                <v-list-item-title class="font-weight-light menu-item">{{ link.text }}</v-list-item-title>
                             </v-list-item-content>
                         </router-link>
                     </v-list-item>
@@ -51,9 +51,9 @@
             <v-layout column align-center>
                 <v-flex class="mt-5">
                     <v-avatar size="100">
-                        <img class="text-lg-center" src="/alex_smith.svg">
+                        <img class="text-lg-center" src="/demo_user.svg">
                     </v-avatar>
-                    <p class="white--text subheading mt-1">Web developer</p>
+                    <p class="text-center white--text subheading mt-4">Demo User</p>
                 </v-flex>
                 <v-flex class="mt-4 mb-3">
                     <Popup @projectAdded="snackbar = true"/>
@@ -101,17 +101,20 @@
 </script>
 
 <style>
-  .nav-title__name:last-child {
-    font-weight: 500;
-  }
-  .nav-btn__menu,
-  .nav-btn__sign-out {
-    text-transform:none;
-  }
-  .v-list-item:hover {
-    background: rgba(255, 255, 255, 0.4);
-  }
-  a {
-    text-decoration: none;
-  }
+    .nav-title__name:last-child {
+        font-weight: 500;
+    }
+    .nav-btn__menu,
+    .nav-btn__sign-out {
+        text-transform: none;
+    }
+    .v-list-item:hover {
+        background: rgba(255, 255, 255, 0.4);
+    }
+    a {
+        text-decoration: none;
+    }
+    .menu-item {
+        color: black;
+    }
 </style>
