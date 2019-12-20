@@ -16,7 +16,7 @@
               <v-card-text class="px-4 grey--text">
 
                 <!-- Edit Modal -->
-                <EditModal :project="project"/>
+                <EditModal :project="project" :updateData="updateData"/>
 
                 <div class="font-weight-bold">Due by {{ project.due }}</div>
                 <div>{{ project.content }}</div>
@@ -38,6 +38,11 @@
     data() {
       return {
         projects: []
+      }
+    },
+    methods: {
+      updateData(data) {
+        this.projects = data;
       }
     },
     computed: {
