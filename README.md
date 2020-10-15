@@ -10,7 +10,7 @@ npm run serve
 ```
 
 ## Technologies
-<b>Front-end:</b> Vue, Vuetify</br>
+<b>Front-end:</b> Vue.js, Vuetify</br>
 <b>Back-end:</b> Node.js, Firebase, Firestore
 </br>
 </br>
