@@ -13,6 +13,8 @@ npm run serve
 <b>Front-end:</b> Vue.js, Vuetify</br>
 <b>Back-end:</b> Node.js, Firebase, Firestore
 </br>
+</br>
+
 
 ![image](https://user-images.githubusercontent.com/26104823/71700691-6b306e80-2d93-11ea-88e0-8fe95b7a2635.png)
 </br>
