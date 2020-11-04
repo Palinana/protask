@@ -1,5 +1,5 @@
 # ProTask
-ProTask is a project planning and time tracking application for agile teams.
+ProTask is a project planning and time tracking application for agile teams. Users are able to create and assign new task.
 
 ## Installation
 ```
